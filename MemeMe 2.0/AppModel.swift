@@ -14,6 +14,8 @@ struct AppModel {
     static let defaultBottomTextFieldText = "BOTTOM"
     static let fontsTableViewSegueIdentifier = "fontsTableView"
     static let fontsCellReuseIdentifier = "fontsCell"
+    static let memesTableCellReuseIdentifier = "memesTableCell"
+    static let memesCollectionCellReuseIdentifier = "memesCollectionCell"
     
     struct alert {
         
@@ -32,7 +34,5 @@ struct AppModel {
     static let fontsAvailable = UIFont.familyNames
     static var currentFontIndex: Int = -1
     static var selectedFont: String = ""
-    
-    
     
 }
