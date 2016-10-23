@@ -20,6 +20,8 @@
 		70111F121DBB780D00372E20 /* impact.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 70111F111DBB780D00372E20 /* impact.ttf */; };
 		70111F151DBB7F1A00372E20 /* SentMemesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70111F141DBB7F1A00372E20 /* SentMemesTableViewController.swift */; };
 		70111F171DBB7F3E00372E20 /* SentMemesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70111F161DBB7F3E00372E20 /* SentMemesCollectionViewController.swift */; };
+		70CE9E3D1DBC0B230008BB0C /* SentMemesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CE9E3C1DBC0B230008BB0C /* SentMemesTableViewCell.swift */; };
+		70CE9E3F1DBC0B4F0008BB0C /* SentMemesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CE9E3E1DBC0B4F0008BB0C /* SentMemesCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 		70111F111DBB780D00372E20 /* impact.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = impact.ttf; sourceTree = "<group>"; };
 		70111F141DBB7F1A00372E20 /* SentMemesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentMemesTableViewController.swift; sourceTree = "<group>"; };
 		70111F161DBB7F3E00372E20 /* SentMemesCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentMemesCollectionViewController.swift; sourceTree = "<group>"; };
+		70CE9E3C1DBC0B230008BB0C /* SentMemesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentMemesTableViewCell.swift; sourceTree = "<group>"; };
+		70CE9E3E1DBC0B4F0008BB0C /* SentMemesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentMemesCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +94,8 @@
 			isa = PBXGroup;
 			children = (
 				70111EDC1DBB756300372E20 /* MemeMe 2.0 */,
+				70CE9E411DBC0B750008BB0C /* SentMemesTableView */,
+				70CE9E401DBC0B530008BB0C /* SentMemesCollectionView */,
 				70111F131DBB785300372E20 /* Supporting Files */,
 				70111EF11DBB756300372E20 /* MemeMe 2.0Tests */,
 				70111EFC1DBB756300372E20 /* MemeMe 2.0UITests */,
@@ -111,11 +117,9 @@
 			isa = PBXGroup;
 			children = (
 				70111EDD1DBB756300372E20 /* AppDelegate.swift */,
+				70111F0B1DBB76B700372E20 /* Meme.swift */,
 				70111EDF1DBB756300372E20 /* MemeEditorViewController.swift */,
 				70111F0F1DBB771900372E20 /* FontsTableViewController.swift */,
-				70111F141DBB7F1A00372E20 /* SentMemesTableViewController.swift */,
-				70111F161DBB7F3E00372E20 /* SentMemesCollectionViewController.swift */,
-				70111F0B1DBB76B700372E20 /* Meme.swift */,
 				70111EE11DBB756300372E20 /* Main.storyboard */,
 				70111EE41DBB756300372E20 /* Assets.xcassets */,
 			);
@@ -149,6 +153,26 @@
 				70111EE91DBB756300372E20 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			path = "MemeMe 2.0";
+			sourceTree = "<group>";
+		};
+		70CE9E401DBC0B530008BB0C /* SentMemesCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				70111F161DBB7F3E00372E20 /* SentMemesCollectionViewController.swift */,
+				70CE9E3E1DBC0B4F0008BB0C /* SentMemesCollectionViewCell.swift */,
+			);
+			name = SentMemesCollectionView;
+			path = "MemeMe 2.0";
+			sourceTree = "<group>";
+		};
+		70CE9E411DBC0B750008BB0C /* SentMemesTableView */ = {
+			isa = PBXGroup;
+			children = (
+				70111F141DBB7F1A00372E20 /* SentMemesTableViewController.swift */,
+				70CE9E3C1DBC0B230008BB0C /* SentMemesTableViewCell.swift */,
+			);
+			name = SentMemesTableView;
 			path = "MemeMe 2.0";
 			sourceTree = "<group>";
 		};
@@ -289,8 +313,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				70111F0C1DBB76B700372E20 /* Meme.swift in Sources */,
+				70CE9E3F1DBC0B4F0008BB0C /* SentMemesCollectionViewCell.swift in Sources */,
 				70111F171DBB7F3E00372E20 /* SentMemesCollectionViewController.swift in Sources */,
 				70111F151DBB7F1A00372E20 /* SentMemesTableViewController.swift in Sources */,
+				70CE9E3D1DBC0B230008BB0C /* SentMemesTableViewCell.swift in Sources */,
 				70111EE01DBB756300372E20 /* MemeEditorViewController.swift in Sources */,
 				70111F101DBB771900372E20 /* FontsTableViewController.swift in Sources */,
 				70111EDE1DBB756300372E20 /* AppDelegate.swift in Sources */,
@@ -449,7 +475,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = PDHEBC3R4L;
 				INFOPLIST_FILE = "MemeMe 2.0/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "iamchanandlerbong.MemeMe-2-0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -466,7 +492,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "MemeMe 2.0/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "iamchanandlerbong.MemeMe-2-0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
