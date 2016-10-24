@@ -24,7 +24,7 @@ class SentMemesTableViewCell: UITableViewCell {
         //update cell's view
         memedImage.image = meme.memedImage
         topText.text = meme.topText as String?
-        bottomText.text = meme.topText as String?
+        bottomText.text = meme.bottomText as String?
     }
 
 }

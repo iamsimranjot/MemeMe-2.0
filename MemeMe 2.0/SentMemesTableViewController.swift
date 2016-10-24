@@ -10,10 +10,10 @@ import UIKit
 
 class SentMemesTableViewController: UITableViewController {
     
-    //MARK: Properties
+    //MARK: Properties & Outlets
     
-    var memeData = (UIApplication.shared.delegate as!
-        AppDelegate).memes
+    @IBOutlet weak var addButton: UIBarButtonItem!
+    var memeData: [Meme]!
     
     //MARK: LifeCycle Methods
     
@@ -26,7 +26,33 @@ class SentMemesTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
+        
+        //Get memes array from AppDelegate
+        let object = UIApplication.shared.delegate
+        let appDelegate = object as! AppDelegate
+        memeData = appDelegate.memes
+        
+        //Set Navigation Controller & Tab Bar Controller Hidden Properties
         self.navigationController?.isNavigationBarHidden = false
+        self.tabBarController?.tabBar.isHidden = false
+        
+        //Reload Table with memes data
+        tableView!.reloadData()
+    }
+    
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        
+        super.setEditing(editing, animated: animated)
+        
+        if editing {
+            
+            addButton.isEnabled = false
+            
+        } else {
+            
+            addButton.isEnabled = true
+        }
     }
     
     
@@ -39,18 +65,23 @@ class SentMemesTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return memeData.count
+        return Meme.count()
     }
     
     
     //MARK: Table View Delegates
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        return 100.0
+    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         
         let cell = tableView.dequeueReusableCell(withIdentifier: AppModel.memesTableCellReuseIdentifier, for: indexPath) as! SentMemesTableViewCell
         
-        let meme = memeData[indexPath.row]
+        let meme = Meme.getMemeStorage().memes[indexPath.row]
         
         cell.updateCell(meme)
         
@@ -60,18 +91,34 @@ class SentMemesTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        //Get the object of MemeDetailViewController from the Storyboard
+        let memeDetail = self.storyboard?.instantiateViewController(withIdentifier: AppModel.memeDetailStoryboardIdentifier) as! MemeDetailViewController
         
+        //Pass the Meme Date
+        memeDetail.meme = Meme.getMemeStorage().memes[indexPath.row]
+        
+        //Push to the scene
+        self.navigationController?.pushViewController(memeDetail, animated: true)
         
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        switch editingStyle {
+        case .delete:
+        
+            Meme.getMemeStorage().memes.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+                    
+        default:
+            
+            return
+        }
     }
-    */
-
+    
+    @IBAction func unwindToSentMemeTable(unwindSegue: UIStoryboardSegue) {
+    
+    }
+    
 }

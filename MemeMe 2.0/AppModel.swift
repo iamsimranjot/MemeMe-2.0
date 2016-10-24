@@ -16,11 +16,16 @@ struct AppModel {
     static let fontsCellReuseIdentifier = "fontsCell"
     static let memesTableCellReuseIdentifier = "memesTableCell"
     static let memesCollectionCellReuseIdentifier = "memesCollectionCell"
+    static let memeEditorStoryboardIdentifier = "MemeEditorViewController"
+    static let memeDetailStoryboardIdentifier = "MemeDetailViewControler"
+    static let memeDetailTableSegueIdentifier = "sentMemesTableShowDetail"
+    static let memeDetailCollectionSegueIdentifier = "sentMemesCollectionShowDetail"
+    static let memeEditorSegueIdentifier = "showMemeEditor"
     
     struct alert {
         
-        static let alertTitle = "Discard"
-        static let alertMessage = "Are you sure you want to discard your changes?"
+        static let alertTitle = "Options"
+        static let alertMessage = ""
     }
     
     static let memeTextAttributes = [

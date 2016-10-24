@@ -13,9 +13,14 @@ class FontsTableViewController: UITableViewController {
     //MARK: Properties
     
     let fontData = AppModel.fontsAvailable
-    
-    
+        
     //MARK: LifeCycle Methods
+    
+    override func viewDidLoad() {
+        
+        let done = UIBarButtonItem.init(barButtonSystemItem: .done, target: self, action: #selector(dismissViewController))
+        self.navigationItem.leftBarButtonItem = done
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
@@ -64,6 +69,11 @@ class FontsTableViewController: UITableViewController {
         AppModel.selectedFont = fontData[indexPath.row]
         tableView.reloadData()
         
+    }
+    
+    func dismissViewController() {
+        
+        self.dismiss(animated: true, completion: nil)
     }
     
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MemeMeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     
     //MARK: IBoutlets
@@ -21,6 +21,11 @@ class MemeMeViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var navBar: UIToolbar!
     @IBOutlet weak var toolBar: UIToolbar!
     @IBOutlet weak var scrollView: UIScrollView!
+    
+    //MARK: Properties
+    
+    let memeData = (UIApplication.shared.delegate as!
+    AppDelegate).memes
     
     
     //MARK: LifeCycle Methods
@@ -39,8 +44,9 @@ class MemeMeViewController: UIViewController, UIImagePickerControllerDelegate, U
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        //To Hide Navigation Controller on this Scene
+        //To Hide Navigation Controller & Tab Bar Controller on this Scene
         self.navigationController?.isNavigationBarHidden = true
+        self.tabBarController?.tabBar.isHidden = true;
         
         //To set the font of the textfields if any selected
         if AppModel.currentFontIndex != -1 {
@@ -199,6 +205,9 @@ class MemeMeViewController: UIViewController, UIImagePickerControllerDelegate, U
                 //Dismiss the shareActivityViewController
                 self.dismiss(animated: true, completion: nil)
                 
+                //Unwind to SentMemeTableView
+                self.performSegue(withIdentifier: AppModel.memeEditorSegueIdentifier, sender: nil)
+                
             }
             
         }
@@ -209,24 +218,29 @@ class MemeMeViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     @IBAction func cancelAction(_ sender: AnyObject) {
         
-        if imagePickerView.image != nil {
             
-            let alert = UIAlertController(title: AppModel.alert.alertTitle , message: AppModel.alert.alertMessage, preferredStyle: .alert)
+        let alert = UIAlertController(title: AppModel.alert.alertTitle , message: AppModel.alert.alertMessage, preferredStyle: .actionSheet)
+        
+        let clear = UIAlertAction(title: "Clear Meme Editor", style: .destructive) { (UIAlertAction) in
             
-            let yes = UIAlertAction(title: "Yes", style: .default) { (UIAlertAction) in
-                
-                self.imagePickerView.image = nil
-                self.resetTextfieldText()
-                self.shareButton.isEnabled = false
-            }
-            
-            let no  = UIAlertAction(title: "No", style: .default, handler: nil)
-            
-            alert.addAction(yes)
-            alert.addAction(no)
-            
-            self.present(alert, animated: true, completion: nil)
+            self.imagePickerView.image = nil
+            self.resetTextfieldText()
+            self.shareButton.isEnabled = false
         }
+        
+        let dismiss = UIAlertAction(title: "Dismiss Meme Editor", style: .destructive, handler: { (UIAlertAction) in
+            
+            self.dismiss(animated: true, completion: nil)
+        })
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        
+        alert.addAction(clear)
+        alert.addAction(dismiss)
+        alert.addAction(cancel)
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
     
@@ -307,7 +321,7 @@ class MemeMeViewController: UIViewController, UIImagePickerControllerDelegate, U
 }
 
 
-extension MemeMeViewController: UITextFieldDelegate {
+extension MemeEditorViewController: UITextFieldDelegate {
     
     //MARK: UITextField Extention
     
@@ -369,7 +383,7 @@ extension MemeMeViewController: UITextFieldDelegate {
 }
 
 
-extension MemeMeViewController: UIScrollViewDelegate {
+extension MemeEditorViewController: UIScrollViewDelegate {
     
     //MARK: UIScrollView Extention
     
