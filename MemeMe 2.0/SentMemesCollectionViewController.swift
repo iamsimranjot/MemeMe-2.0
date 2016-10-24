@@ -13,7 +13,6 @@ class SentMemesCollectionViewController: UICollectionViewController {
     //MARK: Properties & Outlets
     
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
-    var memeData: [Meme]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,11 +37,6 @@ class SentMemesCollectionViewController: UICollectionViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        //Get memes array from AppDelegate
-        let object = UIApplication.shared.delegate
-        let appDelegate = object as! AppDelegate
-        memeData = appDelegate.memes
-        
         //Set Navigation Controller & Tab Bar Controller Hidden Properties
         self.navigationController?.isNavigationBarHidden = false
         self.tabBarController?.tabBar.isHidden = false
@@ -66,7 +60,7 @@ class SentMemesCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return memeData.count
+        return Meme.count()
     }
     
     
@@ -76,7 +70,7 @@ class SentMemesCollectionViewController: UICollectionViewController {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppModel.memesCollectionCellReuseIdentifier, for: indexPath) as! SentMemesCollectionViewCell
         
-        let meme = memeData[indexPath.item]
+        let meme = Meme.getMemeStorage().memes[indexPath.item]
         
         cell.updateCell(meme)
         
@@ -91,7 +85,7 @@ class SentMemesCollectionViewController: UICollectionViewController {
         let memeDetail = self.storyboard?.instantiateViewController(withIdentifier: AppModel.memeDetailStoryboardIdentifier) as! MemeDetailViewController
         
         //Pass the Meme Date
-        memeDetail.meme = memeData[indexPath.row]
+        memeDetail.meme = Meme.getMemeStorage().memes[indexPath.row]
         
         //Push to the scene
         self.navigationController?.pushViewController(memeDetail, animated: true)
