@@ -139,7 +139,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         
         if bottomTextField.isFirstResponder {
             
-            self.view.frame.origin.y -= getKeyboardHeight(notification: notification)
+            view.frame.origin.y = -getKeyboardHeight(notification: notification)
         }
     }
     

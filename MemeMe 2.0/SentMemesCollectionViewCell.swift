@@ -21,5 +21,4 @@ class SentMemesCollectionViewCell: UICollectionViewCell {
         //update cell's view
         memedImage.image = meme.memedImage
     }
-    
 }

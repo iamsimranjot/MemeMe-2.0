@@ -17,19 +17,13 @@ class MemeDetailViewController: UIViewController {
     
     //MARK: LifeCycle Methods
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         //Hide Tab Bar Controller Here
-        self.tabBarController?.tabBar.isHidden = true
+        tabBarController?.tabBar.isHidden = true
         
         //Set the memed Image to show
         memedImage.image = meme.memedImage
     }
-
 }

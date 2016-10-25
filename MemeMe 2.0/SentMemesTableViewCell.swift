@@ -16,7 +16,6 @@ class SentMemesTableViewCell: UITableViewCell {
     @IBOutlet weak var topText: UILabel!
     @IBOutlet weak var bottomText: UILabel!
     
-    
     //MARK: Custom Cell's Functions
     
     func updateCell(_ meme: Meme) {
@@ -26,5 +25,4 @@ class SentMemesTableViewCell: UITableViewCell {
         topText.text = meme.topText as String?
         bottomText.text = meme.bottomText as String?
     }
-
 }

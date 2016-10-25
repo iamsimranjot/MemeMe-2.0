@@ -38,8 +38,8 @@ class SentMemesCollectionViewController: UICollectionViewController {
         super.viewWillAppear(animated)
         
         //Set Navigation Controller & Tab Bar Controller Hidden Properties
-        self.navigationController?.isNavigationBarHidden = false
-        self.tabBarController?.tabBar.isHidden = false
+        navigationController?.isNavigationBarHidden = false
+        tabBarController?.tabBar.isHidden = false
         
         collectionView?.reloadData()
     }
@@ -48,21 +48,13 @@ class SentMemesCollectionViewController: UICollectionViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
     
     // MARK: UICollectionViewDataSource
-
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        
-        return 1
-    }
-
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return Meme.count()
     }
-    
     
     //MARK: UICollectionViews Delegates
 
@@ -78,7 +70,6 @@ class SentMemesCollectionViewController: UICollectionViewController {
     
     }
     
-    
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         //Get the object of MemeDetailViewController from the Storyboard
@@ -88,6 +79,6 @@ class SentMemesCollectionViewController: UICollectionViewController {
         memeDetail.meme = Meme.getMemeStorage().memes[indexPath.row]
         
         //Push to the scene
-        self.navigationController?.pushViewController(memeDetail, animated: true)
+        navigationController?.pushViewController(memeDetail, animated: true)
     }
 }

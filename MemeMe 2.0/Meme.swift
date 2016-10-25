@@ -13,7 +13,7 @@ struct Meme {
     
     var topText: NSString!
     var bottomText: NSString!
-    var image: UIImage!
+    let image: UIImage!
     var memedImage: UIImage!
     
     
@@ -24,8 +24,7 @@ struct Meme {
     
     //Locate the Meme storage location
     static func getMemeStorage() -> AppDelegate {
-        let object = UIApplication.shared.delegate
-        return object as! AppDelegate
+        return UIApplication.shared.delegate as! AppDelegate
     }
 }
 

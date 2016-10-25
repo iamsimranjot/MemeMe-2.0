@@ -19,26 +19,19 @@ class FontsTableViewController: UITableViewController {
     override func viewDidLoad() {
         
         let done = UIBarButtonItem.init(barButtonSystemItem: .done, target: self, action: #selector(dismissViewController))
-        self.navigationItem.leftBarButtonItem = done
+        navigationItem.leftBarButtonItem = done
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.isNavigationBarHidden = false
+        navigationController?.isNavigationBarHidden = false
     }
-    
     
     // MARK: - Table view data source
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        
-        return 1
-    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return fontData.count
     }
-    
     
     //MARK: Table View Delegates
     
@@ -62,7 +55,6 @@ class FontsTableViewController: UITableViewController {
         return cell
     }
     
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         AppModel.currentFontIndex = indexPath.row
@@ -73,7 +65,7 @@ class FontsTableViewController: UITableViewController {
     
     func dismissViewController() {
         
-        self.dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
 }
